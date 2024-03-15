@@ -49,6 +49,7 @@ testpaths = [
 pythonpath = [
 "test" # Needed in order to import conftest.py in test modules
 ]
+markers = [ "api" ]
 
 # -------------------- code coverage --------------------
 # In order to make coverage read from pyproject.toml

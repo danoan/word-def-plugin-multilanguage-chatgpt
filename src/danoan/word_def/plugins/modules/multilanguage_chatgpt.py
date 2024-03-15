@@ -75,7 +75,7 @@ class Adapter:
             ) from ex
 
     def _get_usage_example_api(self, word: str) -> str:
-        return WG.api.get_usage_example(
+        return WG.api.get_usage_examples(
             self.configuration.openai_key, word, self.language
         )
 
