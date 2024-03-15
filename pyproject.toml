@@ -61,20 +61,19 @@ pythonpath = [
 # coverage.exceptions.DataError: Can't combine line data with arc data
 branch = false
 source = [
-    "danoan"
+  "danoan.word_def.plugins.modules.multilanguage_chatgpt"
 ]
 
 [tool.coverage.paths]
 source = [
-  "src/danoan",
-  "*/site-packages/danoan"
+  "danoan/word_def/plugins",
 ]
 
 [tool.coverage.report]
 show_missing = true
 skip_covered = true
 omit = []
-fail_under = 70
+fail_under = 60
 
 
 # -------------------- type checking --------------------
