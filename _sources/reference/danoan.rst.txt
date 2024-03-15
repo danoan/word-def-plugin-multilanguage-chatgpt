@@ -1,0 +1,4 @@
+danoan namespace
+================
+
+.. py:module:: danoan

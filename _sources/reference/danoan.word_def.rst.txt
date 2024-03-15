@@ -1,0 +1,4 @@
+danoan.word\_def namespace
+==========================
+
+.. py:module:: danoan.word_def

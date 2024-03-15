@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>danoan.word_def.plugins.modules.multilanguage_chatgpt module &mdash; word-def-plugin-multilanguage-chatgpt 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=a3d76245" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            word-def-plugin-multilanguage-chatgpt
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started with Multilanguage ChatGPT word-def plugin</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference.html">API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../design-and-architecture.html">Design and Architecture</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">word-def-plugin-multilanguage-chatgpt</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">danoan.word_def.plugins.modules.multilanguage_chatgpt module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-danoan.word_def.plugins.modules.multilanguage_chatgpt">
+<span id="danoan-word-def-plugins-modules-multilanguage-chatgpt-module"></span><h1>danoan.word_def.plugins.modules.multilanguage_chatgpt module<a class="headerlink" href="#module-danoan.word_def.plugins.modules.multilanguage_chatgpt" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">danoan.word_def.plugins.modules.multilanguage_chatgpt.</span></span><span class="sig-name descname"><span class="pre">Adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.Configuration" title="danoan.word_def.plugins.modules.multilanguage_chatgpt.Configuration"><span class="pre">Configuration</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/danoan/word_def/plugins/modules/multilanguage_chatgpt.html#Adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Adapter class that communicates with the word-guru API.</p>
+<p>Each method is divided in two subtasks:
+- _[method_name]_api: Returns the raw api response.
+- _[method_name]_handle: Manipulate the response to return in the desired format.</p>
+<p>Dividing this way allows us to create tests with mock responses for the handle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configuration</strong> (<a class="reference internal" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.Configuration" title="danoan.word_def.plugins.modules.multilanguage_chatgpt.Configuration"><em>Configuration</em></a>) – </p></li>
+<li><p><strong>language</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_definition">
+<span class="sig-name descname"><span class="pre">get_definition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/danoan/word_def/plugins/modules/multilanguage_chatgpt.html#Adapter.get_definition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_definition" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Sequence</em>[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_pos_tag">
+<span class="sig-name descname"><span class="pre">get_pos_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/danoan/word_def/plugins/modules/multilanguage_chatgpt.html#Adapter.get_pos_tag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_pos_tag" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Sequence</em>[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_synonyme">
+<span class="sig-name descname"><span class="pre">get_synonyme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/danoan/word_def/plugins/modules/multilanguage_chatgpt.html#Adapter.get_synonyme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_synonyme" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Sequence</em>[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_usage_example">
+<span class="sig-name descname"><span class="pre">get_usage_example</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/danoan/word_def/plugins/modules/multilanguage_chatgpt.html#Adapter.get_usage_example"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_usage_example" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Sequence</em>[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">danoan.word_def.plugins.modules.multilanguage_chatgpt.</span></span><span class="sig-name descname"><span class="pre">AdapterFactory</span></span><a class="reference internal" href="../_modules/danoan/word_def/plugins/modules/multilanguage_chatgpt.html#AdapterFactory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.get_adapter">
+<span class="sig-name descname"><span class="pre">get_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configuration_stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextIO</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PluginProtocol</span></span></span><a class="reference internal" href="../_modules/danoan/word_def/plugins/modules/multilanguage_chatgpt.html#AdapterFactory.get_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.get_adapter" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>configuration_stream</strong> (<em>TextIO</em><em> | </em><em>None</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>PluginProtocol</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.get_language">
+<span class="sig-name descname"><span class="pre">get_language</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/danoan/word_def/plugins/modules/multilanguage_chatgpt.html#AdapterFactory.get_language"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.get_language" title="Link to this definition"></a></dt>
+<dd><p>Language which the plugin is configured to respond.</p>
+<p>Multilanguage plugins should return an empty string.
+The word-def api is responsible to create specific language versions
+upon request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.version">
+<span class="sig-name descname"><span class="pre">version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/danoan/word_def/plugins/modules/multilanguage_chatgpt.html#AdapterFactory.version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.version" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.Configuration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">danoan.word_def.plugins.modules.multilanguage_chatgpt.</span></span><span class="sig-name descname"><span class="pre">Configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">openai_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/danoan/word_def/plugins/modules/multilanguage_chatgpt.html#Configuration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.Configuration" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>openai_key</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="danoan.word_def.plugins.modules.multilanguage_chatgpt.Configuration.openai_key">
+<span class="sig-name descname"><span class="pre">openai_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#danoan.word_def.plugins.modules.multilanguage_chatgpt.Configuration.openai_key" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Daniel Martins Antunes.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

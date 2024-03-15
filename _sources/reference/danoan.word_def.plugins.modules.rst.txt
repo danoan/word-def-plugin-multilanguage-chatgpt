@@ -1,0 +1,12 @@
+danoan.word\_def.plugins.modules namespace
+==========================================
+
+.. py:module:: danoan.word_def.plugins.modules
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   danoan.word_def.plugins.modules.multilanguage_chatgpt

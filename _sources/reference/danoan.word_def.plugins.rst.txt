@@ -1,0 +1,12 @@
+danoan.word\_def.plugins namespace
+==================================
+
+.. py:module:: danoan.word_def.plugins
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   danoan.word_def.plugins.modules

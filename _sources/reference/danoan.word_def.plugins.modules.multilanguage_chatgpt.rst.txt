@@ -1,0 +1,7 @@
+danoan.word\_def.plugins.modules.multilanguage\_chatgpt module
+==============================================================
+
+.. automodule:: danoan.word_def.plugins.modules.multilanguage_chatgpt
+   :members:
+   :undoc-members:
+   :show-inheritance:
