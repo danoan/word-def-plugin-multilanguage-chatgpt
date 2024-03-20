@@ -56,8 +56,9 @@ $ word-def --plugin-configuration-filepath plugin-config.toml get-usage-examples
 ```
 
 The list of parameters accepted by the plugin is the same as the members of the
-dataclass [Configuration](danoan.word_def.plugins.modules.multilanguage_chatgpt).
+dataclass [Configuration](https://danoan.github.io/word-def-plugin-multilanguage-chatgpt/reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#module-danoan.word_def.plugins.modules.multilanguage_chatgpt).
+
 
 ## Contributing
 
-Please reference to our [contribution](http://danoan.github.io/word-def-plugin-multilanguage-chatgpt/contributing) and [code-of-conduct]((http://danoan.github.io/word-def-plugin-multilanguage-chatgpt/code-of-conduct.md)) guidelines.
+Please reference to our [contribution](http://danoan.github.io/word-def-plugin-multilanguage-chatgpt/contributing) and [code-of-conduct](http://danoan.github.io/word-def-plugin-multilanguage-chatgpt/code-of-conduct.md) guidelines.
