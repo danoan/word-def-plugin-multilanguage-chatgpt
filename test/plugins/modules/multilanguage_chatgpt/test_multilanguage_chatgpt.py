@@ -31,7 +31,7 @@ def test_plugin_compatibility():
     "input_filepath,method_name",
     [
         (SCRIPT_FOLDER / "input" / "get-definition.json", "get_definition"),
-        (SCRIPT_FOLDER / "input" / "get-synonyme.json", "get_synonyme"),
+        (SCRIPT_FOLDER / "input" / "get-synonym.json", "get_synonym"),
         (SCRIPT_FOLDER / "input" / "get-pos-tag.json", "get_pos_tag"),
         (
             SCRIPT_FOLDER / "input" / "get-usage-example.json",

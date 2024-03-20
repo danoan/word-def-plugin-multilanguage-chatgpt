@@ -59,16 +59,16 @@ class Adapter:
                 404, "OpenAI returned nothing."
             ) from ex
 
-    def _get_synonyme_api(self, word: str) -> str:
-        return WG.api.get_synonyme(self.configuration.openai_key, word, self.language)
+    def _get_synonym_api(self, word: str) -> str:
+        return WG.api.get_synonym(self.configuration.openai_key, word, self.language)
 
-    def _get_synonyme_handle(self, response: str) -> Any:
+    def _get_synonym_handle(self, response: str) -> Any:
         return json.loads(response)
 
-    def get_synonyme(self, word: str) -> Sequence[str]:
+    def get_synonym(self, word: str) -> Sequence[str]:
         try:
-            response = self._get_synonyme_api(word)
-            return self._get_synonyme_handle(response)
+            response = self._get_synonym_api(word)
+            return self._get_synonym_handle(response)
         except WG.exception.OpenAIEmptyResponse as ex:
             raise WG.exception.UnexpectedResponseError(
                 404, "OpenAI returned nothing."

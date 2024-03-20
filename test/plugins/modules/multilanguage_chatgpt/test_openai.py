@@ -19,7 +19,7 @@ def openai_key(pytestconfig):
     "method_name,word",
     [
         ("get_definition", "microphone"),
-        ("get_synonyme", "reliable"),
+        ("get_synonym", "reliable"),
         ("get_pos_tag", "minister"),
         ("get_usage_example", "thoughtful"),
     ],
