@@ -17,6 +17,7 @@ repos:
     -   id: check-added-large-files
     -   id: check-json
     -   id: pretty-format-json
+        args: [--autofix]
     -   id: check-toml
 
 -   repo: https://github.com/lovesegfault/beautysh
