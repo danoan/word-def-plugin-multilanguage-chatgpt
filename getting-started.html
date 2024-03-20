@@ -22,7 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API Reference" href="api-reference.html" />
+    <link rel="next" title="API Reference" href="plugin-module.html" />
     <link rel="prev" title="Welcome to Multilanguage ChatGPT word-def plugin’s documentation!" href="index.html" /> 
 </head>
 
@@ -50,6 +50,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with Multilanguage ChatGPT word-def plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
@@ -57,10 +58,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api-reference.html">API Reference</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="design-and-architecture.html">Design and Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin-module.html">API Reference</a></li>
 </ul>
 
         </div>
@@ -90,11 +88,59 @@
   <section id="getting-started-with-multilanguage-chatgpt-word-def-plugin">
 <h1>Getting started with Multilanguage ChatGPT word-def plugin<a class="headerlink" href="#getting-started-with-multilanguage-chatgpt-word-def-plugin" title="Permalink to this heading"></a></h1>
 <p>Multilanguage plugin for word-def</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>word-def-plugin-multilanguage-chatgpt
+</pre></div>
+</div>
+</section>
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Get word definition.</p></li>
+<li><p>Get word synonym.</p></li>
+<li><p>Get part-of-speech tags of a word.</p></li>
+<li><p>Get usage examples.</p></li>
+</ul>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<div class="admonition-word-def admonition">
+<p class="admonition-title">word-def</p>
+<p>You need to have the <a class="reference external" href="https://github.com/danoan/word-def">word-def</a> package installed.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>word-def<span class="w"> </span>--plugin-configuration-filepath<span class="w"> </span>plugin-config.toml<span class="w"> </span>get-definition<span class="w"> </span>joy<span class="w"> </span>eng
+<span class="m">1</span>.<span class="w"> </span>A<span class="w"> </span>feeling<span class="w"> </span>of<span class="w"> </span>great<span class="w"> </span>pleasure<span class="w"> </span>and<span class="w"> </span>happiness.
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>word-def<span class="w"> </span>--plugin-configuration-filepath<span class="w"> </span>plugin-config.toml<span class="w"> </span>get-synonym<span class="w"> </span>joy<span class="w"> </span>eng
+<span class="m">1</span>.<span class="w"> </span>happiness
+<span class="m">2</span>.<span class="w"> </span>delight
+<span class="m">3</span>.<span class="w"> </span>pleasure
+<span class="m">4</span>.<span class="w"> </span>bliss
+<span class="m">5</span>.<span class="w"> </span>euphoria
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>word-def<span class="w"> </span>--plugin-configuration-filepath<span class="w"> </span>plugin-config.toml<span class="w"> </span>get-pos-tags<span class="w"> </span>joy<span class="w"> </span>eng
+<span class="m">1</span>.<span class="w"> </span>noun.
+<span class="m">2</span>.<span class="w"> </span>verb.
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ word-def --plugin-configuration-filepath plugin-config.toml get-usage-examples joy eng
+1. The children&#39;s laughter filled the room with joy and happiness.
+2. She felt a sense of joy and contentment when she achieved her lifelong dream.
+3. The music festival brought a lot of joy to the attendees.
+4. Watching the sunset over the ocean always fills me with joy.
+5. The birth of a baby is a moment of pure joy for the new parents.
+</pre></div>
+</div>
+<div class="admonition-plugin-configuration admonition">
+<p class="admonition-title">Plugin configuration</p>
+<p>The <a class="reference external" href="https://danoan.github.io/word-def/how-to/setup-a-plugin.html">word-def documentation</a>
+has more information about how to setup the plugin configuration file.</p>
+</div>
+<p>The list of parameters accepted by the plugin is the same as the members of the
+dataclass <a class="reference internal" href="reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#module-danoan.word_def.plugins.modules.multilanguage_chatgpt" title="danoan.word_def.plugins.modules.multilanguage_chatgpt"><span class="xref myst py py-mod">Configuration</span></a>.</p>
 </section>
 <section id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading"></a></h2>
@@ -107,7 +153,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Multilanguage ChatGPT word-def plugin’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api-reference.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plugin-module.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
