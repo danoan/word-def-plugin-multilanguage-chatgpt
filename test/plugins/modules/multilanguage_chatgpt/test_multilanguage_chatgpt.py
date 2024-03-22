@@ -39,8 +39,15 @@ def test_plugin_compatibility():
         ),
     ],
 )
-def test_get_definition(input_filepath: Path, method_name: str):
+def test_get_definition(monkeypatch, input_filepath: Path, method_name: str):
     factory = mlc.AdapterFactory()
+
+    def mock_api_call(self, word: str):
+        with open(input_filepath) as f:
+            api_mock_response = json.load(f)
+            return json.dumps(api_mock_response)
+
+    monkeypatch.setattr(mlc.Adapter, f"_{method_name}_api", mock_api_call)
 
     config_toml = {"openai_key": ""}
     ss = io.StringIO()
@@ -48,13 +55,5 @@ def test_get_definition(input_filepath: Path, method_name: str):
     ss.seek(io.SEEK_SET)
 
     adapter = factory.get_adapter(ss)
-
-    # The goal of this method is to overwrite an api call
-    def mock_response(word: str):
-        with open(input_filepath) as f:
-            api_mock_response = json.load(f)
-            return json.dumps(api_mock_response)
-
-    adapter.__setattr__(f"_{method_name}_api", mock_response)
     adapter_response = adapter.__getattribute__(method_name)("dontcare")
     assert len(adapter_response) > 0
