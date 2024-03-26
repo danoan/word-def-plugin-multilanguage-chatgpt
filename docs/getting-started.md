@@ -61,4 +61,4 @@ dataclass [Configuration](https://danoan.github.io/word-def-plugin-multilanguage
 
 ## Contributing
 
-Please reference to our [contribution](http://danoan.github.io/word-def-plugin-multilanguage-chatgpt/contributing) and [code-of-conduct](http://danoan.github.io/word-def-plugin-multilanguage-chatgpt/code-of-conduct.md) guidelines.
+Please reference to our [contribution](http://danoan.github.io/word-def-plugin-multilanguage-chatgpt/contributing) and [code-of-conduct](http://danoan.github.io/word-def-plugin-multilanguage-chatgpt/code-of-conduct) guidelines.
