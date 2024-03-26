@@ -18,9 +18,14 @@ jobs:
       contents: write
     uses: ./.github/workflows/build-package.yml
     needs: [test-suite]
+  integration-test:
+    permissions:
+      contents: write 
+    uses: ./.github/workflows/integration-test.yml 
+    needs: [test-suite,build-documentation,build-package]
   publish:
     runs-on: ubuntu-latest
-    needs: [build-package,build-documentation]
+    needs: [integration-test]
     permissions:
       id-token: write
     steps:
