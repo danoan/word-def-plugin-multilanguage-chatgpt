@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   workflow_call:
   schedule:
-    -cron: '0 0 13 * *'
+    - cron: '0 0 13 * *'
 
 jobs:
   integration-test:
@@ -20,5 +20,5 @@ jobs:
           python -m pip install --upgrade pip && pip install tox 
       - name: Run tests
         run: |
-          tox -e py38 -- -m "api" --openai-key "${{secret.OPENAI_KEY}}"
+          tox -e py38 -- -m "api" --openai-key "${{secrets.OPENAI_KEY}}"
 

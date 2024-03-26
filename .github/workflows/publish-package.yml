@@ -19,8 +19,7 @@ jobs:
     uses: ./.github/workflows/build-package.yml
     needs: [test-suite]
   integration-test:
-    permissions:
-      contents: write 
+    secrets: inherit
     uses: ./.github/workflows/integration-test.yml 
     needs: [test-suite,build-documentation,build-package]
   publish:
