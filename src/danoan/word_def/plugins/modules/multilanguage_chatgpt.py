@@ -3,6 +3,7 @@ from danoan.word_def.core import exception, model
 from danoan.word_guru import core as WG
 
 from dataclasses import dataclass
+from functools import wraps
 import importlib
 import json
 import toml
@@ -12,6 +13,21 @@ from typing import Any, Optional, Sequence, TextIO
 @dataclass
 class Configuration:
     openai_key: str
+
+
+def _handle_common_exceptions(func):
+    @wraps(func)
+    def inner(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except WG.exception.OpenAIEmptyResponse as ex:
+            raise exception.UnexpectedResponseError(
+                404, "OpenAI returned nothing."
+            ) from ex
+        except WG.exception.LanguageCodeNotRecognizedError as ex:
+            raise exception.PluginInternalError from ex
+
+    return inner
 
 
 class Adapter:
@@ -35,14 +51,10 @@ class Adapter:
     def _get_definition_handle(self, response: str) -> Any:
         return json.loads(response)
 
+    @_handle_common_exceptions
     def get_definition(self, word: str) -> Sequence[str]:
-        try:
-            response = self._get_definition_api(word)
-            return self._get_definition_handle(response)
-        except WG.exception.OpenAIEmptyResponse as ex:
-            raise WG.exception.UnexpectedResponseError(
-                404, "OpenAI returned nothing."
-            ) from ex
+        response = self._get_definition_api(word)
+        return self._get_definition_handle(response)
 
     def _get_pos_tag_api(self, word: str) -> str:
         return WG.api.get_pos_tag(self.configuration.openai_key, word, self.language)
@@ -50,14 +62,10 @@ class Adapter:
     def _get_pos_tag_handle(self, response: str) -> Any:
         return json.loads(response)
 
+    @_handle_common_exceptions
     def get_pos_tag(self, word: str) -> Sequence[str]:
-        try:
-            response = self._get_pos_tag_api(word)
-            return self._get_pos_tag_handle(response)
-        except WG.exception.OpenAIEmptyResponse as ex:
-            raise WG.exception.UnexpectedResponseError(
-                404, "OpenAI returned nothing."
-            ) from ex
+        response = self._get_pos_tag_api(word)
+        return self._get_pos_tag_handle(response)
 
     def _get_synonym_api(self, word: str) -> str:
         return WG.api.get_synonym(self.configuration.openai_key, word, self.language)
@@ -65,14 +73,10 @@ class Adapter:
     def _get_synonym_handle(self, response: str) -> Any:
         return json.loads(response)
 
+    @_handle_common_exceptions
     def get_synonym(self, word: str) -> Sequence[str]:
-        try:
-            response = self._get_synonym_api(word)
-            return self._get_synonym_handle(response)
-        except WG.exception.OpenAIEmptyResponse as ex:
-            raise WG.exception.UnexpectedResponseError(
-                404, "OpenAI returned nothing."
-            ) from ex
+        response = self._get_synonym_api(word)
+        return self._get_synonym_handle(response)
 
     def _get_usage_example_api(self, word: str) -> str:
         return WG.api.get_usage_examples(
@@ -82,14 +86,10 @@ class Adapter:
     def _get_usage_example_handle(self, response: str) -> Any:
         return json.loads(response)
 
+    @_handle_common_exceptions
     def get_usage_example(self, word: str) -> Sequence[str]:
-        try:
-            response = self._get_usage_example_api(word)
-            return self._get_usage_example_handle(response)
-        except WG.exception.OpenAIEmptyResponse as ex:
-            raise WG.exception.UnexpectedResponseError(
-                404, "OpenAI returned nothing."
-            ) from ex
+        response = self._get_usage_example_api(word)
+        return self._get_usage_example_handle(response)
 
 
 class AdapterFactory:

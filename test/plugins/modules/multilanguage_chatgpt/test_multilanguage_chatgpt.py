@@ -45,7 +45,8 @@ def test_get_definition(monkeypatch, input_filepath: Path, method_name: str):
     def mock_api_call(self, word: str):
         with open(input_filepath) as f:
             api_mock_response = json.load(f)
-            return json.dumps(api_mock_response)
+            d = json.dumps(api_mock_response)
+            return d
 
     monkeypatch.setattr(mlc.Adapter, f"_{method_name}_api", mock_api_call)
 
