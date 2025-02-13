@@ -20,7 +20,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = ["word-def(>=0.2.0,<1.0.0)", "word-guru(>=0.1.0,<1.0.0)"]
+dependencies = ["word-def(>=0.2.0,<1.0.0)", "word-guru(>=0.3.1,<1.0.0)"]
 
 [project.urls]
 Documentation = "https://github.com/danoan/word-def-plugin-multilanguage-chatgpt#readme"
