@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting started with Multilanguage ChatGPT word-def plugin &mdash; word-def-plugin-multilanguage-chatgpt 0.2.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <title>Getting started with Multilanguage ChatGPT word-def plugin &mdash; word-def-plugin-multilanguage-chatgpt 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=a3d76245" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b1f64a84"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=e259d695"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,9 +35,6 @@
           <a href="index.html" class="icon icon-home">
             word-def-plugin-multilanguage-chatgpt
           </a>
-              <div class="version">
-                0.2.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -86,16 +81,16 @@
            <div itemprop="articleBody">
              
   <section id="getting-started-with-multilanguage-chatgpt-word-def-plugin">
-<h1>Getting started with Multilanguage ChatGPT word-def plugin<a class="headerlink" href="#getting-started-with-multilanguage-chatgpt-word-def-plugin" title="Permalink to this heading"></a></h1>
+<h1>Getting started with Multilanguage ChatGPT word-def plugin<a class="headerlink" href="#getting-started-with-multilanguage-chatgpt-word-def-plugin" title="Link to this heading"></a></h1>
 <p>Multilanguage plugin for word-def</p>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>word-def-plugin-multilanguage-chatgpt
 </pre></div>
 </div>
 </section>
 <section id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h2>
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Get word definition.</p></li>
 <li><p>Get word synonym.</p></li>
@@ -104,7 +99,7 @@
 </ul>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
 <div class="admonition-word-def admonition">
 <p class="admonition-title">word-def</p>
 <p>You need to have the <a class="reference external" href="https://github.com/danoan/word-def">word-def</a> package installed.</p>
@@ -126,12 +121,12 @@
 <span class="m">2</span>.<span class="w"> </span>verb.
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ word-def --plugin-configuration-filepath plugin-config.toml get-usage-examples joy eng
-1. The children&#39;s laughter filled the room with joy and happiness.
-2. She felt a sense of joy and contentment when she achieved her lifelong dream.
-3. The music festival brought a lot of joy to the attendees.
-4. Watching the sunset over the ocean always fills me with joy.
-5. The birth of a baby is a moment of pure joy for the new parents.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>word-def<span class="w"> </span>--plugin-configuration-filepath<span class="w"> </span>plugin-config.toml<span class="w"> </span>get-usage-examples<span class="w"> </span>joy<span class="w"> </span>eng
+<span class="m">1</span>.<span class="w"> </span>The<span class="w"> </span>children<span class="err">&#39;</span>s<span class="w"> </span>laughter<span class="w"> </span>filled<span class="w"> </span>the<span class="w"> </span>room<span class="w"> </span>with<span class="w"> </span>joy<span class="w"> </span>and<span class="w"> </span>happiness.
+<span class="m">2</span>.<span class="w"> </span>She<span class="w"> </span>felt<span class="w"> </span>a<span class="w"> </span>sense<span class="w"> </span>of<span class="w"> </span>joy<span class="w"> </span>and<span class="w"> </span>contentment<span class="w"> </span>when<span class="w"> </span>she<span class="w"> </span>achieved<span class="w"> </span>her<span class="w"> </span>lifelong<span class="w"> </span>dream.
+<span class="m">3</span>.<span class="w"> </span>The<span class="w"> </span>music<span class="w"> </span>festival<span class="w"> </span>brought<span class="w"> </span>a<span class="w"> </span>lot<span class="w"> </span>of<span class="w"> </span>joy<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>attendees.
+<span class="m">4</span>.<span class="w"> </span>Watching<span class="w"> </span>the<span class="w"> </span>sunset<span class="w"> </span>over<span class="w"> </span>the<span class="w"> </span>ocean<span class="w"> </span>always<span class="w"> </span>fills<span class="w"> </span>me<span class="w"> </span>with<span class="w"> </span>joy.
+<span class="m">5</span>.<span class="w"> </span>The<span class="w"> </span>birth<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>baby<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>moment<span class="w"> </span>of<span class="w"> </span>pure<span class="w"> </span>joy<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>new<span class="w"> </span>parents.
 </pre></div>
 </div>
 <div class="admonition-plugin-configuration admonition">
@@ -143,7 +138,7 @@ has more information about how to setup the plugin configuration file.</p>
 dataclass <a class="reference external" href="https://danoan.github.io/word-def-plugin-multilanguage-chatgpt/reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#module-danoan.word_def.plugins.modules.multilanguage_chatgpt">Configuration</a>.</p>
 </section>
 <section id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading"></a></h2>
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h2>
 <p>Please reference to our <a class="reference external" href="http://danoan.github.io/word-def-plugin-multilanguage-chatgpt/contributing">contribution</a> and <a class="reference external" href="http://danoan.github.io/word-def-plugin-multilanguage-chatgpt/code-of-conduct">code-of-conduct</a> guidelines.</p>
 </section>
 </section>

@@ -1,25 +1,29 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>danoan.word_def.plugins.modules.multilanguage_chatgpt &mdash; word-def-plugin-multilanguage-chatgpt 0.2.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+  <title>danoan.word_def.plugins.modules.multilanguage_chatgpt &mdash; word-def-plugin-multilanguage-chatgpt 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=a3d76245" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js?v=b1f64a84"></script>
-        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../../../_static/sphinx_highlight.js?v=4825356b"></script>
-        <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-        <script>mermaid.initialize({startOnLoad:true});</script>
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
@@ -36,9 +40,6 @@
           <a href="../../../../../index.html" class="icon icon-home">
             word-def-plugin-multilanguage-chatgpt
           </a>
-              <div class="version">
-                0.2.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -79,23 +80,44 @@
            <div itemprop="articleBody">
              
   <h1>Source code for danoan.word_def.plugins.modules.multilanguage_chatgpt</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">danoan.word_def.core</span> <span class="kn">import</span> <span class="n">exception</span><span class="p">,</span> <span class="n">model</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">danoan.word_def.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">exception</span><span class="p">,</span> <span class="n">model</span>
 
-<span class="kn">from</span> <span class="nn">danoan.word_guru</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">WG</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">danoan.word_guru</span><span class="w"> </span><span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">WG</span>
 
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">import</span> <span class="nn">importlib</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">toml</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">TextIO</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">toml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">TextIO</span>
 
 
-<div class="viewcode-block" id="Configuration"><a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Configuration">[docs]</a><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">Configuration</span><span class="p">:</span>
+<div class="viewcode-block" id="Configuration">
+<a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Configuration">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Configuration</span><span class="p">:</span>
     <span class="n">openai_key</span><span class="p">:</span> <span class="nb">str</span></div>
 
 
-<div class="viewcode-block" id="Adapter"><a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter">[docs]</a><span class="k">class</span> <span class="nc">Adapter</span><span class="p">:</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_handle_common_exceptions</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">WG</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">OpenAIEmptyResponse</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">exception</span><span class="o">.</span><span class="n">UnexpectedResponseError</span><span class="p">(</span>
+                <span class="mi">404</span><span class="p">,</span> <span class="s2">&quot;OpenAI returned nothing.&quot;</span>
+            <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+        <span class="k">except</span> <span class="n">WG</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">LanguageCodeNotRecognizedError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">exception</span><span class="o">.</span><span class="n">PluginInternalError</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+    <span class="k">return</span> <span class="n">inner</span>
+
+
+<div class="viewcode-block" id="Adapter">
+<a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Adapter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Adapter class that communicates with the word-guru API.</span>
 
@@ -106,78 +128,88 @@
 <span class="sd">    Dividing this way allows us to create tests with mock responses for the handle.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">:</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">language</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">:</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">language</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">configuration</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="n">language</span>
 
-    <span class="k">def</span> <span class="nf">_get_definition_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">WG</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_definition</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">openai_key</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_get_definition_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-
-<div class="viewcode-block" id="Adapter.get_definition"><a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_definition">[docs]</a>    <span class="k">def</span> <span class="nf">get_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_definition_api</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_definition_handle</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">WG</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">OpenAIEmptyResponse</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">WG</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">UnexpectedResponseError</span><span class="p">(</span>
-                <span class="mi">404</span><span class="p">,</span> <span class="s2">&quot;OpenAI returned nothing.&quot;</span>
-            <span class="p">)</span> <span class="kn">from</span> <span class="nn">ex</span></div>
-
-    <span class="k">def</span> <span class="nf">_get_pos_tag_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">WG</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_pos_tag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">openai_key</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_get_pos_tag_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-
-<div class="viewcode-block" id="Adapter.get_pos_tag"><a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_pos_tag">[docs]</a>    <span class="k">def</span> <span class="nf">get_pos_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_pos_tag_api</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_pos_tag_handle</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">WG</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">OpenAIEmptyResponse</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">WG</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">UnexpectedResponseError</span><span class="p">(</span>
-                <span class="mi">404</span><span class="p">,</span> <span class="s2">&quot;OpenAI returned nothing.&quot;</span>
-            <span class="p">)</span> <span class="kn">from</span> <span class="nn">ex</span></div>
-
-    <span class="k">def</span> <span class="nf">_get_synonym_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">WG</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_synonym</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">openai_key</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_get_synonym_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-
-<div class="viewcode-block" id="Adapter.get_synonym"><a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_synonym">[docs]</a>    <span class="k">def</span> <span class="nf">get_synonym</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_synonym_api</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_synonym_handle</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">WG</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">OpenAIEmptyResponse</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">WG</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">UnexpectedResponseError</span><span class="p">(</span>
-                <span class="mi">404</span><span class="p">,</span> <span class="s2">&quot;OpenAI returned nothing.&quot;</span>
-            <span class="p">)</span> <span class="kn">from</span> <span class="nn">ex</span></div>
-
-    <span class="k">def</span> <span class="nf">_get_usage_example_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">WG</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_usage_examples</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">openai_key</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_definition_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">WG</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_definition</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">openai_key</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_usage_example_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_definition_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Adapter.get_usage_example"><a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_usage_example">[docs]</a>    <span class="k">def</span> <span class="nf">get_usage_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_usage_example_api</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_usage_example_handle</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">WG</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">OpenAIEmptyResponse</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">WG</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">UnexpectedResponseError</span><span class="p">(</span>
-                <span class="mi">404</span><span class="p">,</span> <span class="s2">&quot;OpenAI returned nothing.&quot;</span>
-            <span class="p">)</span> <span class="kn">from</span> <span class="nn">ex</span></div></div>
+<div class="viewcode-block" id="Adapter.get_definition">
+<a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_definition">[docs]</a>
+    <span class="nd">@_handle_common_exceptions</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_definition_api</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_definition_handle</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="AdapterFactory"><a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory">[docs]</a><span class="k">class</span> <span class="nc">AdapterFactory</span><span class="p">:</span>
-<div class="viewcode-block" id="AdapterFactory.version"><a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.version">[docs]</a>    <span class="k">def</span> <span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_pos_tag_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">WG</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_pos_tag</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">openai_key</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_pos_tag_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Adapter.get_pos_tag">
+<a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_pos_tag">[docs]</a>
+    <span class="nd">@_handle_common_exceptions</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_pos_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_pos_tag_api</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_pos_tag_handle</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_synonym_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">WG</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_synonym</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">openai_key</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_synonym_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Adapter.get_synonym">
+<a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_synonym">[docs]</a>
+    <span class="nd">@_handle_common_exceptions</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_synonym</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_synonym_api</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_synonym_handle</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_usage_example_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">WG</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_usage_examples</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">openai_key</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_usage_example_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Adapter.get_usage_example">
+<a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.Adapter.get_usage_example">[docs]</a>
+    <span class="nd">@_handle_common_exceptions</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_usage_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_usage_example_api</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_usage_example_handle</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="AdapterFactory">
+<a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AdapterFactory</span><span class="p">:</span>
+<div class="viewcode-block" id="AdapterFactory.version">
+<a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.version">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">importlib</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">version</span><span class="p">(</span><span class="s2">&quot;word-def-plugin-multilanguage-chatgpt&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AdapterFactory.get_language"><a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.get_language">[docs]</a>    <span class="k">def</span> <span class="nf">get_language</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+<div class="viewcode-block" id="AdapterFactory.get_language">
+<a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.get_language">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_language</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Language which the plugin is configured to respond.</span>
 
@@ -188,14 +220,19 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AdapterFactory.get_adapter"><a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.get_adapter">[docs]</a>    <span class="k">def</span> <span class="nf">get_adapter</span><span class="p">(</span>
+
+<div class="viewcode-block" id="AdapterFactory.get_adapter">
+<a class="viewcode-back" href="../../../../../reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#danoan.word_def.plugins.modules.multilanguage_chatgpt.AdapterFactory.get_adapter">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_adapter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">configuration_stream</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TextIO</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">model</span><span class="o">.</span><span class="n">PluginProtocol</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">configuration_stream</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">exception</span><span class="o">.</span><span class="n">ConfigurationFileRequiredError</span><span class="p">()</span>
 
         <span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span><span class="o">**</span><span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">configuration_stream</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">Adapter</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_language</span><span class="p">())</span></div></div>
+        <span class="k">return</span> <span class="n">Adapter</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_language</span><span class="p">())</span></div>
+</div>
+
 </pre></div>
 
            </div>
