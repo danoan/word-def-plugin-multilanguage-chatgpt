@@ -46,7 +46,9 @@ class Adapter:
         self.language = language
 
     def _get_definition_api(self, word: str) -> str:
-        return WG.api.get_definition(self.configuration.openai_key, word, self.language)
+        return WG.api.get_definition(
+            self.configuration.openai_key, None, word, self.language
+        )
 
     def _get_definition_handle(self, response: str) -> Any:
         return json.loads(response)
@@ -57,7 +59,9 @@ class Adapter:
         return self._get_definition_handle(response)
 
     def _get_pos_tag_api(self, word: str) -> str:
-        return WG.api.get_pos_tag(self.configuration.openai_key, word, self.language)
+        return WG.api.get_pos_tag(
+            self.configuration.openai_key, None, word, self.language
+        )
 
     def _get_pos_tag_handle(self, response: str) -> Any:
         return json.loads(response)
@@ -68,7 +72,9 @@ class Adapter:
         return self._get_pos_tag_handle(response)
 
     def _get_synonym_api(self, word: str) -> str:
-        return WG.api.get_synonym(self.configuration.openai_key, word, self.language)
+        return WG.api.get_synonym(
+            self.configuration.openai_key, None, word, self.language
+        )
 
     def _get_synonym_handle(self, response: str) -> Any:
         return json.loads(response)
@@ -80,7 +86,7 @@ class Adapter:
 
     def _get_usage_example_api(self, word: str) -> str:
         return WG.api.get_usage_examples(
-            self.configuration.openai_key, word, self.language
+            self.configuration.openai_key, None, word, self.language
         )
 
     def _get_usage_example_handle(self, response: str) -> Any:
