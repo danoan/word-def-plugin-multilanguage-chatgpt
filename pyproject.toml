@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "word-def-plugin-multilanguage-chatgpt"
-version = "0.2.0"
+version = "0.3.0"
 description = "Multilanguage plugin for word-def"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = { file = "LICENSE.txt" }
 keywords = []
 authors = [
@@ -16,11 +16,11 @@ authors = [
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = ["word-def(>=0.2.0,<1.0.0)", "word-guru(>=0.1.0,<1.0.0)"]
+dependencies = ["word-def(>=0.2.0,<1.0.0)", "word-guru(>=0.3.1,<1.0.0)"]
 
 [project.urls]
 Documentation = "https://github.com/danoan/word-def-plugin-multilanguage-chatgpt#readme"

@@ -9,8 +9,6 @@ jobs:
     strategy:
       matrix:
         python:
-          - version: "3.8"
-            toxenv: "py38"
           - version: "3.10"
             toxenv: "py310"
     uses: ./.github/workflows/single-test-suite.yml
