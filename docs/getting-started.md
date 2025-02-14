@@ -1,6 +1,6 @@
 # Getting started with Multilanguage ChatGPT word-def plugin
 
-Multilanguage plugin for word-def
+Multi-language plugin for `word-def` package.
 
 ## Installation
 
@@ -55,8 +55,13 @@ $ word-def --plugin-configuration-filepath plugin-config.toml get-usage-examples
    has more information about how to setup the plugin configuration file.
 ```
 
-The list of parameters accepted by the plugin is the same as the members of the
-dataclass [Configuration](https://danoan.github.io/word-def-plugin-multilanguage-chatgpt/reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#module-danoan.word_def.plugins.modules.multilanguage_chatgpt).
+## Plugin parameters
+
+To configure the plugin, create the `plugin-config.toml` file similar to the one below:
+
+```toml
+openai_key="PERSONAL OPENAI KEY"
+```
 
 
 ## Contributing
