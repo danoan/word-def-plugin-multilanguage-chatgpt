@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting started with Multilanguage ChatGPT word-def plugin &mdash; word-def-plugin-multilanguage-chatgpt 0.3.0 documentation</title>
+  <title>Getting started with Multilanguage ChatGPT word-def plugin &mdash; word-def-plugin-multilanguage-chatgpt 0.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=a3d76245" />
@@ -14,7 +14,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=e259d695"></script>
+      <script src="_static/documentation_options.js?v=4621528c"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -48,6 +48,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plugin-parameters">Plugin parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
 </ul>
 </li>
@@ -82,7 +83,7 @@
              
   <section id="getting-started-with-multilanguage-chatgpt-word-def-plugin">
 <h1>Getting started with Multilanguage ChatGPT word-def plugin<a class="headerlink" href="#getting-started-with-multilanguage-chatgpt-word-def-plugin" title="Link to this heading"></a></h1>
-<p>Multilanguage plugin for word-def</p>
+<p>Multi-language plugin for <code class="docutils literal notranslate"><span class="pre">word-def</span></code> package.</p>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>word-def-plugin-multilanguage-chatgpt
@@ -134,8 +135,13 @@
 <p>The <a class="reference external" href="https://danoan.github.io/word-def/how-to/setup-a-plugin.html">word-def documentation</a>
 has more information about how to setup the plugin configuration file.</p>
 </div>
-<p>The list of parameters accepted by the plugin is the same as the members of the
-dataclass <a class="reference external" href="https://danoan.github.io/word-def-plugin-multilanguage-chatgpt/reference/danoan.word_def.plugins.modules.multilanguage_chatgpt.html#module-danoan.word_def.plugins.modules.multilanguage_chatgpt">Configuration</a>.</p>
+</section>
+<section id="plugin-parameters">
+<h2>Plugin parameters<a class="headerlink" href="#plugin-parameters" title="Link to this heading"></a></h2>
+<p>To configure the plugin, create the <code class="docutils literal notranslate"><span class="pre">plugin-config.toml</span></code> file similar to the one below:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="n">openai_key</span><span class="o">=</span><span class="s2">&quot;PERSONAL OPENAI KEY&quot;</span>
+</pre></div>
+</div>
 </section>
 <section id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h2>
